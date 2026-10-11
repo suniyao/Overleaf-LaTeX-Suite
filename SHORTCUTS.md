@@ -1,16 +1,50 @@
-# Complete shortcut inventory — v0.3.0
+# Shortcut guide — v0.3.0
 
-All 201 active definitions from the pinned LaTeX Suite defaults are accounted for below. Rules 4 and 5 are intentionally disabled. “Adapted” means the Overleaf behavior described in README.md; it also includes consolidated display-math rules. Rows can share triggers or cover different contexts.
+New here? Start with the [one-minute example and installation guide](https://github.com/suniyao/Overleaf-LaTeX-Suite/blob/main/README.md). This page is a lookup for what to type once the userscript is running in Overleaf's **Source** editor.
 
-Outputs show initial text before filling fields; blank fields are empty, defaults are visible. `\n` denotes a newline. Use Tab to move between fields. Regex rules show a concrete example; Greek and symbol groups are listed below. Selection rules use `x+y`.
+## How to use this guide
 
-**GREEK:** `alpha`, `beta`, `gamma`, `Gamma`, `delta`, `Delta`, `epsilon`, `varepsilon`, `zeta`, `eta`, `theta`, `vartheta`, `Theta`, `iota`, `kappa`, `lambda`, `Lambda`, `mu`, `nu`, `xi`, `omicron`, `pi`, `rho`, `varrho`, `sigma`, `Sigma`, `tau`, `upsilon`, `Upsilon`, `phi`, `varphi`, `Phi`, `chi`, `psi`, `omega`, `Omega`, `Pi`, `Xi`, `Psi`.
+- **Text** means ordinary LaTeX document text. **Math** means inside `$...$`, `\[...\]`, or a math environment. **Inline math** and **display math** are narrower cases of math.
+- **Auto** means the trigger expands as soon as you type its last character. Type it character by character; pasting does not expand it. **Tab** means type the trigger, then press Tab. **Selection** means select some math and press the listed key.
+- In the inventory, **Initial output** is the LaTeX inserted before you fill any fields. Empty braces are editable fields; a visible default may be selected for replacement. `\n` stands for a line break in long, single-line table cells.
+- Rows marked **Adapted** behave differently from their Obsidian source so they work in LaTeX/Overleaf. **Imported** follows the upstream rule. **Disabled** means the trigger does not run. Several rows can share a trigger because they apply in different contexts.
+- Most triggers are case sensitive. Type `@a`, not `\@a`; the script inserts the backslash. Some inventory examples show text already produced by another shortcut, such as `\alpha sr`, or include a leading space to show where a regex matches.
 
-**SYMBOL:** `parallel`, `perp`, `partial`, `nabla`, `hbar`, `ell`, `infty`, `oplus`, `ominus`, `otimes`, `oslash`, `square`, `star`, `dagger`, `vee`, `wedge`, `subseteq`, `subset`, `supseteq`, `supset`, `emptyset`, `exists`, `nexists`, `forall`, `implies`, `impliedby`, `iff`, `setminus`, `neg`, `lor`, `land`, `bigcup`, `bigcap`, `cdot`, `times`, `simeq`, `approx`.
+## Quick lookup
 
-**MORE_SYMBOLS:** `leq`, `geq`, `neq`, `gg`, `ll`, `equiv`, `sim`, `propto`, `rightarrow`, `leftarrow`, `Rightarrow`, `Leftarrow`, `leftrightarrow`, `to`, `top`, `mapsto`, `cap`, `cup`, `in`, `sum`, `prod`, `exp`, `ln`, `log`, `det`, `dots`, `vdots`, `ddots`, `pm`, `mp`, `int`, `iint`, `iiint`, `oint`.
+| Want to... | Type in Overleaf | Then... |
+|---|---|---|
+| Start inline math | `mk` in text | Type inside `$...$`; Tab exits |
+| Start display math | `dm` on an empty text line | Type inside `\[...\]`; Tab exits |
+| Insert alpha or theta | `@a` or `@t` in math | Automatic |
+| Make a fraction | `//` in math | Fill numerator, Tab, fill denominator, Tab |
+| Make a fraction from an expression | `(a+b)/` in math | Fill denominator, then Tab |
+| Add a root | `sq` or `3rt` in math | Fill the root body |
+| Add a sum or integral | `sum` or `int` in math | Press Tab for the full template |
+| Add a partial derivative | `par` in math | Press Tab for the full template |
+| Make a matrix | `pmat` or `bmat` in math | Tab adds a cell; Enter adds a row; Shift+Enter exits |
+| Add a fixed matrix | `23pmat` in math | Fill its 2 rows and 3 columns with Tab |
 
-**ACCENT:** `dot`, `ddot`, `hat`, `bar`, `tilde`, `vec`, `underline`, `overline`, `mathbf`, `mathcal`, `mathrm`, `mathbb`.
+**Moving around:** Tab / Shift+Tab move forward / back through fields. When there are no active fields, Tab can jump past a closing math delimiter. Escape clears active fields. In dynamic matrices, a nested snippet's fields take priority over adding a cell.
+
+**Selected math:** Alt+/ (Option+/ on Mac) makes a fraction. U / O / B / C / K / S wrap the selection in underbrace / overbrace / underset / cancel / cancel-to / square root. Typing `(`, `[`, or `{` wraps it in matching brackets. Alt+Shift+B boxes the current equation; Alt+Shift+S selects it. Your browser or operating system may reserve an Alt/Option combination.
+
+**Packages:** Common math examples use `amsmath,amssymb`. `proof` needs `amsthm`; `C` and `K` selection wraps need `cancel`; `bra`, `ket`, and `brk` need `braket`; `pu` inserts `\qty` and needs `siunitx`; `cee` inserts `\ce` and needs `mhchem`. See the [README package examples](https://github.com/suniyao/Overleaf-LaTeX-Suite/blob/main/README.md#latex-packages-for-some-shortcuts).
+
+## Full imported-rule inventory
+
+The numbered rows below account for upstream rule IDs 1–201. IDs 4 and 5 are intentionally disabled. Some other IDs are implemented together, so the count is not a count of distinct triggers. The table shows representative output, including visible default values, before you edit the fields.
+
+### Full-name trigger families
+
+These families let you type a word such as `alpha` or `parallel` in math and have the script insert the corresponding LaTeX command. They are also used by several regex rules in the inventory.
+
+- **Greek:** `alpha`, `beta`, `gamma`, `Gamma`, `delta`, `Delta`, `epsilon`, `varepsilon`, `zeta`, `eta`, `theta`, `vartheta`, `Theta`, `iota`, `kappa`, `lambda`, `Lambda`, `mu`, `nu`, `xi`, `omicron`, `pi`, `rho`, `varrho`, `sigma`, `Sigma`, `tau`, `upsilon`, `Upsilon`, `phi`, `varphi`, `Phi`, `chi`, `psi`, `omega`, `Omega`, `Pi`, `Xi`, `Psi`.
+- **Symbols:** `parallel`, `perp`, `partial`, `nabla`, `hbar`, `ell`, `infty`, `oplus`, `ominus`, `otimes`, `oslash`, `square`, `star`, `dagger`, `vee`, `wedge`, `subseteq`, `subset`, `supseteq`, `supset`, `emptyset`, `exists`, `nexists`, `forall`, `implies`, `impliedby`, `iff`, `setminus`, `neg`, `lor`, `land`, `bigcup`, `bigcap`, `cdot`, `times`, `simeq`, `approx`.
+- **More symbols and operators:** `leq`, `geq`, `neq`, `gg`, `ll`, `equiv`, `sim`, `propto`, `rightarrow`, `leftarrow`, `Rightarrow`, `Leftarrow`, `leftrightarrow`, `to`, `top`, `mapsto`, `cap`, `cup`, `in`, `sum`, `prod`, `exp`, `ln`, `log`, `det`, `dots`, `vdots`, `ddots`, `pm`, `mp`, `int`, `iint`, `iiint`, `oint`.
+- **Accents and font commands:** `dot`, `ddot`, `hat`, `bar`, `tilde`, `vec`, `underline`, `overline`, `mathbf`, `mathcal`, `mathrm`, `mathbb`.
+
+### Starting math (rules 1–5)
 
 | Rule | Type / example | Activation | Context | Initial output | Status |
 |---|---|---|---|---|---|
@@ -19,6 +53,11 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 3 | `dm` | Auto | Text | `\[\n\n\]` | Adapted |
 | 4 | ` beg` | Auto | Display math | `Disabled` | Disabled |
 | 5 | ` beg` | Auto | Inline math | `Disabled` | Disabled |
+
+### Greek-letter aliases (rules 6–29)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 6 | `@a` | Auto | Math | `\alpha` | Imported |
 | 7 | `@b` | Auto | Math | `\beta` | Imported |
 | 8 | `@g` | Auto | Math | `\gamma` | Imported |
@@ -43,6 +82,11 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 27 | `@O` | Auto | Math | `\Omega` | Imported |
 | 28 | `ome` | Auto | Math | `\omega` | Imported |
 | 29 | `Ome` | Auto | Math | `\Omega` | Imported |
+
+### Text, powers, roots, fractions, accents, and subscripts (rules 30–82)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 30 | `\n  "` | Auto | Math | `\text{ } ` | Adapted |
 | 31 | `text` | Auto | Math | `\text{}` | Imported |
 | 32 | `"` | Auto | Math | `\text{}` | Imported |
@@ -96,6 +140,11 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 80 | `yii` | Auto | Math | `y_{i}` | Imported |
 | 81 | `yjj` | Auto | Math | `y_{j}` | Imported |
 | 82 | `ooo` | Auto | Math | `\infty` | Imported |
+
+### Operators, relations, calculus, and sets (rules 83–152)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 83 | `sum` | Auto | Math | `\sum` | Imported |
 | 84 | `prod` | Auto | Math | `\prod` | Imported |
 | 85 | `\sum` | Tab | Math | `\sum_{i=1}^{N} ` | Imported |
@@ -166,6 +215,11 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 150 | `infi` | Auto | Math | `\int_{-\infty}^{\infty}  \, dx ` | Imported |
 | 151 | ` sin` | Auto | Math | `\sin` | Imported |
 | 152 | `arccsc` | Auto | Math | `\operatorname{arccsc}` | Imported |
+
+### Selection, physics, and chemistry (rules 153–172)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 153 | `U` | Selection | Math | `\underbrace{ x+y }_{  }` | Imported |
 | 154 | `O` | Selection | Math | `\overbrace{ x+y }^{  }` | Imported |
 | 155 | `B` | Selection | Math | `\underset{  }{ x+y }` | Imported |
@@ -179,13 +233,18 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 163 | `ox` | Auto | Math | `\otimes ` | Imported |
 | 164 | `bra` | Auto | Math | `\bra{} ` | Imported |
 | 165 | `ket` | Auto | Math | `\ket{} ` | Imported |
-| 166 | `brk` | Auto | Math | `\braket{  &#124;  } ` | Imported |
+| 166 | `brk` | Auto | Math | <code>\braket{  &#124;  } </code> | Imported |
 | 167 | `outer` | Auto | Math | `\ket{\psi} \bra{\psi} ` | Imported |
 | 168 | `pu` | Auto | Math | `\qty{1}{m}` | Adapted |
 | 169 | `cee` | Auto | Math | `\ce{  }` | Imported |
 | 170 | `he4` | Auto | Math | `{}^{4}_{2}He ` | Imported |
 | 171 | `he3` | Auto | Math | `{}^{3}_{2}He ` | Imported |
 | 172 | `iso` | Auto | Math | `{}^{4}_{2}He` | Imported |
+
+### Matrices, environments, and delimiters (rules 173–195)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 173 | `pmat` | Auto | Display math | `\begin{pmatrix}\n  \n\end{pmatrix}` | Adapted |
 | 174 | `array` | Auto | Display math | `\begin{array}{cc}\n  \n\end{array}` | Adapted |
 | 175 | `bmat` | Auto | Inline math | `\begin{bmatrix}\end{bmatrix}` | Adapted |
@@ -197,7 +256,7 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 181 | `Norm` | Auto | Math | `\lVert  \rVert ` | Imported |
 | 182 | `ceil` | Auto | Math | `\lceil  \rceil ` | Imported |
 | 183 | `floor` | Auto | Math | `\lfloor  \rfloor ` | Imported |
-| 184 | `mod` | Auto | Math | `&#124;&#124;` | Imported |
+| 184 | `mod` | Auto | Math | <code>&#124;&#124;</code> | Imported |
 | 185 | `(` | Selection | Math | `(x+y)` | Imported |
 | 186 | `[` | Selection | Math | `[x+y]` | Imported |
 | 187 | `{` | Selection | Math | `{x+y}` | Imported |
@@ -207,8 +266,13 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 191 | `lr(` | Auto | Math | `\left(  \right) ` | Imported |
 | 192 | `lr{` | Auto | Math | `\left\{  \right\} ` | Imported |
 | 193 | `lr[` | Auto | Math | `\left[  \right] ` | Imported |
-| 194 | `lr&#124;` | Auto | Math | `\left&#124;  \right&#124; ` | Imported |
+| 194 | <code>lr&#124;</code> | Auto | Math | <code>\left&#124;  \right&#124; </code> | Imported |
 | 195 | `lra` | Auto | Math | `\left<  \right> ` | Imported |
+
+### Command helpers and display-math adaptations (rules 196–201)
+
+| Rule | Type / example | Activation | Context | Initial output | Status |
+|---|---|---|---|---|---|
 | 196 | `\alpha` | Auto | Math | `\alpha` | Adapted |
 | 197 | `\alphax` | Auto | Math | `\alpha x` | Adapted |
 | 198 | `tayl` | Auto | Math | `f(x + h) = f(x) + f'(x)h + f''(x) \frac{h^{2}}{2!} + \dots` | Imported |
@@ -216,6 +280,10 @@ Outputs show initial text before filling fields; blank fields are empty, default
 | 200 | `- note dm` | Auto | Text | `\[\n\n\]` | Adapted |
 | 201 | `\n    dm` | Auto | Text | `\[\n    \n    \]` | Adapted |
 
-Rules 196–197 are command-protection/spacing helpers rather than new text triggers. Rule 196 deliberately leaves a recognized command prefix unchanged. Rules 200–201 are handled by the general `dm` implementation. Standard-LaTeX omicron substitution applies throughout.
+Rules 196–197 protect explicitly typed commands and add spacing where needed; they are not new text triggers. Rules 200–201 use the same indentation-preserving `dm` behavior described in the README. The ordinary letter `o` is used for `omicron`, because standard LaTeX has no `\omicron` command.
 
-See README.md for matrix keyboard behavior, equation commands, preserved extra shortcuts, package requirements, and changes from v0.2.
+## Extra shortcuts in this port
+
+The inventory above tracks upstream rule IDs. This port also keeps these useful shortcuts: `ff` (fraction), `compl`, `td`, `iff`, `AA`, `EE`, `sse`, `~~`, `diff`, `fun`, `abs`, `txt`, and `prob`. In text, type `ali`, `eqn`, `proof`, `itemize`, or `enum` and press Tab; type `today` and press Tab for the local date. Fixed-size matrices use a row count, a column count, and a matrix type: for example, `23pmat` makes a 2×3 `pmatrix` (each dimension can be 2–6).
+
+For installation, updates, troubleshooting, and customizing your own rules, see the [README](https://github.com/suniyao/Overleaf-LaTeX-Suite/blob/main/README.md).
