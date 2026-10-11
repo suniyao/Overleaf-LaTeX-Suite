@@ -2,7 +2,7 @@
 
 Type LaTeX faster in Overleaf's **Source** editor. This userscript turns short triggers into math commands and templates: type `mk` in ordinary text to start inline math, then type `@a` to insert `\alpha`. It also makes fractions, matrices, calculus templates, and more. **Tab** moves through editable fields.
 
-This is an independent project inspired by [Obsidian LaTeX Suite](https://github.com/artisticat1/obsidian-latex-suite) and [Gilles Castel's lecture-note workflow](https://castel.dev/post/lecture-notes-1/). 
+This is an independent project inspired by [Obsidian LaTeX Suite](https://github.com/artisticat1/obsidian-latex-suite) and [Gilles Castel's lecture-note workflow](https://castel.dev/post/lecture-notes-1/). This script is also published at [Greasy Fork](https://greasyfork.org/en/scripts/599779-overleaf-latex-suite).
 
 ## Install
 
