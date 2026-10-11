@@ -1,0 +1,1 @@
+From this directory, run `npm install` then `npm test` (Node.js 24+). This builds the test-only CodeMirror bundle and executes the integration scenarios with Vim on and off. The userscript itself has no npm or runtime dependency requirement.
